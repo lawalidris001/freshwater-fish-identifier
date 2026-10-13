@@ -1,0 +1,108 @@
+{
+  "classes": [
+    "niloticus",
+    "aureus",
+    "melanotheron",
+    "zillii",
+    "gariepinus",
+    "carpio"
+  ],
+  "target": "niloticus",
+  "display_names": {
+    "niloticus": "Nile tilapia (Oreochromis niloticus)",
+    "aureus": "Oreochromis aureus",
+    "melanotheron": "Sarotherodon melanotheron",
+    "zillii": "Coptodon zillii",
+    "gariepinus": "Clarias gariepinus",
+    "carpio": "Cyprinus carpio"
+  },
+  "input_size": 224,
+  "temperature": 9.104101181030273,
+  "backbone": "mobilenetv2_100",
+  "trained_on": "2026-10-12",
+  "n_images": 1200,
+  "split_counts": {
+    "aureus": {
+      "test": 28,
+      "train": 155,
+      "val": 17
+    },
+    "carpio": {
+      "test": 15,
+      "train": 163,
+      "val": 22
+    },
+    "gariepinus": {
+      "test": 15,
+      "train": 160,
+      "val": 25
+    },
+    "melanotheron": {
+      "test": 19,
+      "train": 170,
+      "val": 11
+    },
+    "niloticus": {
+      "test": 14,
+      "train": 165,
+      "val": 21
+    },
+    "zillii": {
+      "test": 23,
+      "train": 165,
+      "val": 12
+    }
+  },
+  "test_metrics": {
+    "test_n": 114,
+    "accuracy": 0.16666666666666666,
+    "accuracy_ci95": [
+      0.10526315789473684,
+      0.23684210526315788
+    ],
+    "macro_f1": 0.15469811353957694,
+    "macro_f1_ci95": [
+      0.0915181750516803,
+      0.21488818603386514
+    ],
+    "target_precision": 0.0,
+    "target_recall": 0.0,
+    "per_class_recall": {
+      "niloticus": 0.0,
+      "aureus": 0.14285714285714285,
+      "melanotheron": 0.2631578947368421,
+      "zillii": 0.13043478260869565,
+      "gariepinus": 0.3333333333333333,
+      "carpio": 0.13333333333333333
+    }
+  },
+  "model_comparison": [
+    {
+      "model": "custom_cnn",
+      "params_M": 0.46,
+      "size_MB_fp32": 1.8,
+      "val_macro_f1": 0.2234,
+      "test_accuracy": 0.2544,
+      "test_macro_f1": 0.1935,
+      "test_weighted_f1": 0.2151
+    },
+    {
+      "model": "resnet50",
+      "params_M": 23.52,
+      "size_MB_fp32": 94.1,
+      "val_macro_f1": 0.6515,
+      "test_accuracy": 0.5088,
+      "test_macro_f1": 0.4883,
+      "test_weighted_f1": 0.5037
+    },
+    {
+      "model": "mobilenetv2_100",
+      "params_M": 2.23,
+      "size_MB_fp32": 8.9,
+      "val_macro_f1": 0.2568,
+      "test_accuracy": 0.1667,
+      "test_macro_f1": 0.1547,
+      "test_weighted_f1": 0.1639
+    }
+  ]
+}

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FinID: Freshwater Fish Species Identifier</title>
+  <meta name="description" content="Upload a photo of a freshwater fish and identify it as one of six species: Nile, blue, blackchin and redbelly tilapia, African catfish or common carp. Runs entirely in your browser.">
+  <meta name="theme-color" content="#0a2a33">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ONNX Runtime Web: runs the trained model inside the browser -->
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.1/dist/ort.min.js"></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#identify">Skip to the identifier</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="FinID home">
+        <img src="images/favicon.svg" alt="" width="34" height="34">
+        <span>Fin<b>ID</b></span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Main">
+        <a href="#identify">Identify</a>
+        <a href="#species">Species guide</a>
+        <a href="#how">How it works</a>
+        <a href="#about">About the model</a>
+        <a class="nav-cta" href="#identify">Try it now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1>Is that a Nile tilapia, or something else?</h1>
+          <p class="lead">
+            Upload a photo of a freshwater fish and get its most likely species in a couple of seconds.
+            The analysis runs inside your browser, so your picture never leaves your device.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-amber" href="#identify">Identify a fish</a>
+            <a class="btn btn-ghost" href="#species">Browse the six species</a>
+          </div>
+          <ul class="hero-facts">
+            <li><strong>6</strong> species recognised</li>
+            <li><strong>0</strong> photos uploaded to a server</li>
+            <li><strong>Free</strong> to use, no sign-up</li>
+          </ul>
+        </div>
+
+        <div class="hero-art">
+          <img src="images/hero.svg" alt="Illustration of a Nile tilapia, a blue tilapia and a common carp swimming in clear water" width="760" height="820">
+        </div>
+      </div>
+    </section>
+
+    <!-- IDENTIFIER -->
+    <section class="tool" id="identify" aria-labelledby="toolTitle">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="toolTitle">Identify your fish</h2>
+          <p>Choose a clear, side-on photo. We will compare it against the six species this model was trained on.</p>
+        </div>
+
+        <div class="tool-grid">
+          <!-- Upload -->
+          <div class="card upload-card">
+            <div class="card-title">
+              <h3>Your photo</h3>
+              <span class="pill" id="modelStatus" data-state="loading"><i></i><span id="modelStatusText">Loading model</span></span>
+            </div>
+
+            <div class="dropzone" id="dropZone">
+              <div class="dz-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 25c6-9 15-12 22-9 6 3 10 8 14 9-4 1-8 6-14 9-7 3-16 0-22-9z"/><path d="M42 25l4-7v14z"/><circle cx="16" cy="23" r="1.6" fill="currentColor"/></svg>
+              </div>
+              <h4>Drop a fish photo here</h4>
+              <p>or pick one from your device. You can also paste an image with Ctrl + V.</p>
+              <div class="dz-actions">
+                <button class="btn btn-primary" id="chooseBtn" type="button">Choose a photo</button>
+                <button class="btn btn-soft" id="cameraBtn" type="button">Take a photo</button>
+              </div>
+              <small>JPG, PNG or WEBP, up to 10 MB</small>
+              <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" hidden>
+              <input type="file" id="cameraInput" accept="image/*" capture="environment" hidden>
+            </div>
+
+            <figure class="preview hidden" id="previewWrap">
+              <div class="preview-frame">
+                <img id="previewImg" alt="Selected fish photo">
+                <div class="scanning hidden" id="scanning" aria-hidden="true"></div>
+              </div>
+              <figcaption>
+                <div>
+                  <p class="file-name" id="fileName"></p>
+                  <p class="file-meta" id="fileMeta"></p>
+                </div>
+                <div class="preview-actions">
+                  <button class="btn btn-soft btn-sm" id="againBtn" type="button">Identify again</button>
+                  <button class="btn btn-quiet btn-sm" id="removeBtn" type="button">Remove</button>
+                </div>
+              </figcaption>
+            </figure>
+
+            <p class="form-msg" id="uploadMsg" role="status" aria-live="polite"></p>
+
+            <div class="tips">
+              <h4>For the best result</h4>
+              <ul>
+                <li>Show the whole fish from the side, head to tail.</li>
+                <li>Use daylight and a plain background if you can.</li>
+                <li>Keep one fish in the frame and avoid heavy filters.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Result -->
+          <div class="card result-card" aria-live="polite">
+            <div class="card-title">
+              <h3>Result</h3>
+            </div>
+
+            <div class="result-state" id="resultEmpty">
+              <img src="images/nile-tilapia.svg" alt="" class="empty-art" width="320" height="190">
+              <h4>Nothing to identify yet</h4>
+              <p>Add a photo on the left and the most likely species will show up here, along with how sure the model is.</p>
+            </div>
+
+            <div class="result-state hidden" id="resultLoading">
+              <div class="spinner" aria-hidden="true"></div>
+              <h4 id="loadingText">Looking at your fish</h4>
+              <p>This usually takes a second or two.</p>
+            </div>
+
+            <div class="result-state hidden" id="resultError">
+              <div class="err-icon" aria-hidden="true">!</div>
+              <h4 id="errorTitle">Something went wrong</h4>
+              <p id="errorText"></p>
+              <button class="btn btn-primary btn-sm" id="errorRetry" type="button">Try again</button>
+            </div>
+
+            <div class="hidden" id="resultBody">
+              <div class="top-match">
+                <img id="topImg" alt="" width="150" height="89">
+                <div class="top-text">
+                  <p class="muted-label">Most likely species</p>
+                  <h4 id="topName"></h4>
+                  <p class="sci" id="topSci"></p>
+                </div>
+                <div class="conf">
+                  <span class="conf-num" id="topConf"></span>
+                  <span class="conf-label" id="topConfLabel"></span>
+                </div>
+              </div>
+
+              <div class="meter" aria-hidden="true"><div class="meter-fill" id="topMeter"></div></div>
+              <p class="note" id="topNote"></p>
+
+              <h5>All six species</h5>
+              <ul class="probs" id="probList"></ul>
+
+              <div class="how-to-confirm">
+                <h5>How to confirm it yourself</h5>
+                <ul id="topTells"></ul>
+              </div>
+
+              <button class="btn btn-soft btn-sm" id="moreBtn" type="button">Read the species profile</button>
+
+              <p class="disclaimer">
+                This model only knows six species. A fish outside this list will still be matched to the closest of the six,
+                so treat the result as a helpful guess, not a final identification.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECIES -->
+    <section class="species" id="species" aria-labelledby="speciesTitle">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="speciesTitle">The six species it knows</h2>
+          <p>Four tilapia and two common look-alikes found in the same waters. Select a card to see what sets each one apart.</p>
+        </div>
+        <div class="species-grid" id="speciesGrid"></div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how" id="how" aria-labelledby="howTitle">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="howTitle">How it works</h2>
+          <p>Three steps, all of them happening on your own device.</p>
+        </div>
+        <ol class="steps">
+          <li>
+            <span class="step-num">1</span>
+            <h3>You add a photo</h3>
+            <p>Pick an image or take one with your camera. It is only read by this page and is never sent anywhere.</p>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <h3>The page prepares it</h3>
+            <p>The image is resized to 224 by 224 pixels and its colour values are converted into the numbers the model expects.</p>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <h3>The model scores six species</h3>
+            <p>A lightweight neural network (MobileNetV2) gives each species a probability. The highest one is your result.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about" aria-labelledby="aboutTitle">
+      <div class="wrap about-grid">
+        <div>
+          <h2 id="aboutTitle">About the model</h2>
+          <p>
+            FinID is a deep learning capstone project. A convolutional neural network was trained on openly licensed
+            photographs of six freshwater fish and exported to ONNX, a format that runs directly in a web browser.
+          </p>
+          <p>
+            Fish can look very alike, especially among tilapia, so the confidence bar matters as much as the name.
+            When the model is unsure, it says so.
+          </p>
+        </div>
+        <dl class="model-facts" id="modelFacts">
+          <div><dt>Architecture</dt><dd id="factBackbone">MobileNetV2</dd></div>
+          <div><dt>Input size</dt><dd id="factInput">224 × 224 px</dd></div>
+          <div><dt>Species</dt><dd>6</dd></div>
+          <div class="hidden" id="factImagesRow"><dt>Training images</dt><dd id="factImages"></dd></div>
+          <div class="hidden" id="factAccRow"><dt>Test accuracy</dt><dd id="factAcc"></dd></div>
+          <div><dt>Runs on</dt><dd>Your device, offline after loading</dd></div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div class="brand brand-footer">
+        <img src="images/favicon.svg" alt="" width="30" height="30">
+        <span>Fin<b>ID</b></span>
+      </div>
+      <p>Freshwater Fish Species Identification System Using Deep Learning. Academic capstone project.</p>
+      <p class="fine">&copy; <span id="year"></span> FinID. Results are a guide only.</p>
+    </div>
+  </footer>
+
+  <!-- Species profile dialog -->
+  <dialog class="dialog" id="speciesDialog" aria-labelledby="dlgName">
+    <div class="dlg-inner">
+      <button class="dlg-close" id="dlgClose" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+      <img id="dlgImg" alt="">
+      <div class="dlg-body">
+        <p class="family" id="dlgFamily"></p>
+        <h3 id="dlgName"></h3>
+        <p class="sci" id="dlgSci"></p>
+        <p id="dlgBlurb"></p>
+        <h5>Key features</h5>
+        <ul id="dlgTells"></ul>
+        <dl class="dlg-meta">
+          <div><dt>Habitat</dt><dd id="dlgHabitat"></dd></div>
+          <div><dt>Often confused with</dt><dd id="dlgConfused"></dd></div>
+        </dl>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

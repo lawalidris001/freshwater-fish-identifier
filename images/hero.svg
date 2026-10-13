@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 820" role="img" aria-label="Underwater scene with tilapia and carp">
+<style>.drift{animation:d 9s ease-in-out infinite alternate}@keyframes d{from{transform:translateX(calc(var(--dx)*-1))}to{transform:translateX(var(--dx))}}
+.bub{animation:b 11s linear infinite}@keyframes b{from{transform:translateY(0);opacity:0}12%{opacity:.5}to{transform:translateY(-820px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.drift,.bub{animation:none}}</style>
+<defs><linearGradient id="hw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f9aa0"/><stop offset=".5" stop-color="#136b75"/><stop offset="1" stop-color="#082a33"/></linearGradient>
+<linearGradient id="hr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+<rect width="760" height="820" fill="url(#hw)"/>
+<polygon points="120,0 230,0 470,820 220,820" fill="url(#hr)"/><polygon points="400,0 470,0 700,820 560,820" fill="url(#hr)"/><polygon points="620,0 690,0 780,820 740,820" fill="url(#hr)"/>
+<g fill="#06241f" fill-opacity=".6"><path d="M30 820 Q10 700 40 600 Q56 700 66 820Z"/><path d="M70 820 Q60 740 90 660 Q104 740 110 820Z"/><path d="M640 820 Q620 690 654 590 Q676 690 690 820Z"/><path d="M700 820 Q690 740 722 670 Q736 740 744 820Z"/></g>
+<rect y="780" width="760" height="40" fill="#061c1a" fill-opacity=".6"/>
+<g fill="#fff" fill-opacity=".5">
+<circle class="bub" cx="120" cy="780" r="7" style="animation-delay:0s"/><circle class="bub" cx="150" cy="800" r="4" style="animation-delay:2.4s"/>
+<circle class="bub" cx="610" cy="790" r="6" style="animation-delay:4s"/><circle class="bub" cx="640" cy="780" r="3.5" style="animation-delay:6.5s"/><circle class="bub" cx="380" cy="810" r="5" style="animation-delay:8s"/></g>
+<g transform="translate(70,250)"><g class="drift" style="animation-duration:9s;--dx:22px"><g transform="scale(1.05,1.05) translate(0,0)"><defs>
+<linearGradient id="Hnb" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#56706d"/><stop offset=".55" stop-color="#8a9c92"/><stop offset="1" stop-color="#dcd6c3"/>
+</linearGradient>
+<linearGradient id="Hnf" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#6b7c78"/><stop offset="1" stop-color="#9aa59b"/>
+</linearGradient>
+<linearGradient id="Hnh" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".45" stop-color="#000" stop-opacity="0"/>
+</linearGradient>
+<pattern id="Hns" width="24" height="18" patternUnits="userSpaceOnUse">
+  <path d="M0 18 Q12 2 24 18" fill="none" stroke="#000" stroke-opacity=".16" stroke-width="1.6"/>
+  <path d="M-12 9 Q0 -7 12 9" fill="none" stroke="#000" stroke-opacity=".16" stroke-width="1.6"/>
+</pattern>
+
+<clipPath id="Hnc"><path d="M70 195 Q105 105 250 96 Q410 88 490 168 L505 195 L490 222 Q410 302 250 294 Q105 285 70 195 Z"/></clipPath><clipPath id="Hnt"><path d="M486 195 L590 112 Q568 195 590 278 Z"/></clipPath></defs>
+<path d="M185 100 Q215 52 262 58 L285 38 L312 62 L340 40 L368 68 L395 54 Q432 80 452 128 Q320 88 185 100 Z" fill="url(#Hnf)"/>
+<path d="M360 284 Q395 332 452 324 Q442 285 422 260 Z" fill="url(#Hnf)"/>
+<path d="M228 284 Q232 336 286 342 Q282 300 270 286 Z" fill="url(#Hnf)"/>
+<path d="M486 195 L590 112 Q568 195 590 278 Z" fill="url(#Hnf)"/>
+<g clip-path="url(#Hnt)"><rect x="508" y="90" width="5" height="210" fill="#1b2a2a" opacity=".55"/><rect x="521" y="90" width="5" height="210" fill="#1b2a2a" opacity=".55"/><rect x="534" y="90" width="5" height="210" fill="#1b2a2a" opacity=".55"/><rect x="547" y="90" width="5" height="210" fill="#1b2a2a" opacity=".55"/><rect x="560" y="90" width="5" height="210" fill="#1b2a2a" opacity=".55"/><path d="M486 195 L590 112" stroke="#c0453a" stroke-width="5"/><path d="M486 195 L590 278" stroke="#c0453a" stroke-width="5"/></g><path d="M70 195 Q105 105 250 96 Q410 88 490 168 L505 195 L490 222 Q410 302 250 294 Q105 285 70 195 Z" fill="url(#Hnb)"/><g clip-path="url(#Hnc)"><path d="M70 195 Q105 105 250 96 Q410 88 490 168 L505 195 L490 222 Q410 302 250 294 Q105 285 70 195 Z" fill="url(#Hns)"/><rect x="60" y="80" width="260" height="240" fill="url(#Hnh)"/><path d="M70 150 Q250 120 490 168 L490 140 L70 120Z" fill="#fff" opacity=".08"/></g><path d="M180 138 Q212 195 178 262" stroke="#000" stroke-opacity=".28" stroke-width="3" fill="none"/>
+<path d="M175 216 Q215 258 262 236 Q225 214 200 204 Z" fill="#6b7c78" opacity=".85"/>
+<path d="M73 201 Q88 207 104 202" stroke="#000" stroke-opacity=".45" stroke-width="3" fill="none" stroke-linecap="round"/>
+<circle cx="136" cy="168" r="12" fill="#f4efe1"/><circle cx="138" cy="168" r="7" fill="#111"/><circle cx="141" cy="165" r="2.4" fill="#fff"/></g></g></g>
+<g transform="translate(320,560)"><g class="drift" style="animation-duration:11s;--dx:30px"><g transform="scale(-0.62,0.62) translate(-640,0)"><defs>
+<linearGradient id="Hpb" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#a67a2f"/><stop offset=".55" stop-color="#cfa44c"/><stop offset="1" stop-color="#ecd998"/>
+</linearGradient>
+<linearGradient id="Hpf" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#c18a38"/><stop offset="1" stop-color="#e0b563"/>
+</linearGradient>
+<linearGradient id="Hph" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".45" stop-color="#000" stop-opacity="0"/>
+</linearGradient>
+<pattern id="Hps" width="24" height="18" patternUnits="userSpaceOnUse">
+  <path d="M0 18 Q12 2 24 18" fill="none" stroke="#000" stroke-opacity=".16" stroke-width="1.6"/>
+  <path d="M-12 9 Q0 -7 12 9" fill="none" stroke="#000" stroke-opacity=".16" stroke-width="1.6"/>
+</pattern>
+<clipPath id="Hpc"><path d="M75 195 Q110 95 260 90 Q420 90 490 165 L505 195 L490 225 Q420 300 260 298 Q110 295 75 195 Z"/></clipPath></defs>
+<path d="M170 98 Q300 34 442 132 Q310 88 170 98 Z" fill="url(#Hpf)"/>
+<path d="M350 292 Q385 340 450 332 Q438 292 420 262 Z" fill="url(#Hpf)"/>
+<path d="M232 288 Q238 338 288 342 Q284 302 272 288 Z" fill="url(#Hpf)"/>
+<path d="M486 195 L594 104 L562 195 L594 286 Z" fill="url(#Hpf)"/>
+<path d="M75 195 Q110 95 260 90 Q420 90 490 165 L505 195 L490 225 Q420 300 260 298 Q110 295 75 195 Z" fill="url(#Hpb)"/>
+<g clip-path="url(#Hpc)"><path d="M75 195 Q110 95 260 90 Q420 90 490 165 L505 195 L490 225 Q420 300 260 298 Q110 295 75 195 Z" fill="url(#Hps)"/><path d="M70 150 Q250 118 490 168 L490 130 L70 110Z" fill="#fff" opacity=".1"/></g>
+<path d="M182 140 Q214 195 180 262" stroke="#000" stroke-opacity=".28" stroke-width="3" fill="none"/>
+<path d="M176 216 Q216 258 264 236 Q226 214 200 204 Z" fill="#c18a38" opacity=".85"/>
+<path d="M76 200 Q60 214 44 210 M82 190 Q64 192 52 182" stroke="#e0b563" stroke-width="4" fill="none" stroke-linecap="round"/>
+<path d="M77 201 Q92 207 108 202" stroke="#000" stroke-opacity=".45" stroke-width="3" fill="none" stroke-linecap="round"/>
+<circle cx="140" cy="166" r="12" fill="#f4efe1"/><circle cx="142" cy="166" r="7" fill="#111"/><circle cx="145" cy="163" r="2.4" fill="#fff"/></g></g></g>
+<g transform="translate(360,90)"><g class="drift" style="animation-duration:7s;--dx:18px"><g transform="scale(0.5,0.5) translate(0,0)"><defs>
+<linearGradient id="Hab" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#6b8eab"/><stop offset=".55" stop-color="#9bb4c4"/><stop offset="1" stop-color="#ece6df"/>
+</linearGradient>
+<linearGradient id="Haf" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#7e9cb5"/><stop offset="1" stop-color="#b9c9d4"/>
+</linearGradient>
+<linearGradient id="Hah" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#d98a92" stop-opacity="0.55"/><stop offset=".45" stop-color="#d98a92" stop-opacity="0"/>
+</linearGradient>
+<pattern id="Has" width="24" height="18" patternUnits="userSpaceOnUse">
+  <path d="M0 18 Q12 2 24 18" fill="none" stroke="#000" stroke-opacity=".16" stroke-width="1.6"/>
+  <path d="M-12 9 Q0 -7 12 9" fill="none" stroke="#000" stroke-opacity=".16" stroke-width="1.6"/>
+</pattern>
+
+<clipPath id="Hac"><path d="M70 195 Q105 105 250 96 Q410 88 490 168 L505 195 L490 222 Q410 302 250 294 Q105 285 70 195 Z"/></clipPath><clipPath id="Hat"><path d="M486 195 L590 112 Q568 195 590 278 Z"/></clipPath></defs>
+<path d="M185 100 Q215 52 262 58 L285 38 L312 62 L340 40 L368 68 L395 54 Q432 80 452 128 Q320 88 185 100 Z" fill="url(#Haf)"/>
+<path d="M360 284 Q395 332 452 324 Q442 285 422 260 Z" fill="url(#Haf)"/>
+<path d="M228 284 Q232 336 286 342 Q282 300 270 286 Z" fill="url(#Haf)"/>
+<path d="M486 195 L590 112 Q568 195 590 278 Z" fill="url(#Haf)"/>
+<g clip-path="url(#Hat)"><path d="M486 195 L590 112" stroke="#d4453a" stroke-width="5"/><path d="M486 195 L590 278" stroke="#d4453a" stroke-width="5"/></g><path d="M70 195 Q105 105 250 96 Q410 88 490 168 L505 195 L490 222 Q410 302 250 294 Q105 285 70 195 Z" fill="url(#Hab)"/><g clip-path="url(#Hac)"><path d="M70 195 Q105 105 250 96 Q410 88 490 168 L505 195 L490 222 Q410 302 250 294 Q105 285 70 195 Z" fill="url(#Has)"/><rect x="60" y="80" width="260" height="240" fill="url(#Hah)"/><path d="M70 150 Q250 120 490 168 L490 140 L70 120Z" fill="#fff" opacity=".08"/></g><path d="M180 138 Q212 195 178 262" stroke="#000" stroke-opacity=".28" stroke-width="3" fill="none"/>
+<path d="M175 216 Q215 258 262 236 Q225 214 200 204 Z" fill="#7e9cb5" opacity=".85"/>
+<path d="M73 201 Q88 207 104 202" stroke="#000" stroke-opacity=".45" stroke-width="3" fill="none" stroke-linecap="round"/>
+<circle cx="136" cy="168" r="12" fill="#f4efe1"/><circle cx="138" cy="168" r="7" fill="#111"/><circle cx="141" cy="165" r="2.4" fill="#fff"/></g></g></g>
+</svg>
